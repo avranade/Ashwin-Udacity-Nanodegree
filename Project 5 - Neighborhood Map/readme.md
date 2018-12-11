@@ -1,7 +1,7 @@
 ## Project 5 : Neighbourhood Map - Blue Bottle locations in San Francisco
 This single page application was created to show a map of locations where Blue Bottle Coffee is available.  
 
-## 
+## Frameworks/APIs used
 * Knockout JS
 * Google Maps
 * Foursquare
