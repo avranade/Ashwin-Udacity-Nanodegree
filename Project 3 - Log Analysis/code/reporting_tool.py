@@ -18,10 +18,14 @@ def run():
 #   Functions to generate answers for the questions
 #
 #   Flow of control:
-#   When run() is called, it executes each function call one after the other
-#   E.g. run() calls generate_answer_for_question_1 which calls the getter in database_provisioner
-#   The getter is configured to pass take the SQL query defined in the provisioner to the executor
-#   which connects to DB and executes the sql query, returning the results which are then passed back to this function
+#   When run() is called, it executes each function sequentially
+#   E.g. run() calls generate_answer_for_question_1
+#   which calls the getter in database_provisioner.
+#   The getter is configured to pass the SQL query
+#   defined in the provisioner to the executor.
+#   Executor connects to DB and executes the sql query,
+#   returning the results which are then passed back to this function
+
 def generate_answer_for_question_1():
     print "Q1. What are the most popular three articles of all time?\n"
     rows = database_provisioner.get_three_most_popular_articles()
@@ -41,6 +45,7 @@ def generate_answer_for_question_3():
     rows = database_provisioner.get_days_with_higher_errors()
     for row in rows:
         print "%s - %s errors" % (row[0], row[1])
+
 
 #   Execute code
 run()

@@ -2,7 +2,8 @@ import psycopg2
 
 # Database name is stored separately for ease of use/portability.
 #   In this case, we only have one function connecting to DB
-#   If we have multiple functions operating on DB, changing DB name on those will get tedious
+#   If we have multiple functions operating on DB,
+#   changing DB name on those will get tedious
 DATABASE_NAME = "news"
 
 #   Query to generate answer for 1st question
@@ -56,7 +57,8 @@ SQL_QUERY_DAYS_WITH_HIGH_ERRORS = """
         """
 
 
-#   Function to connect and execute query is kept separate from other getters, to follow DRY principle
+#   Function to connect and execute query is kept separate
+#   This is to follow DRY principle
 def connect_and_fetch_data(query):
     """Setup connection to db using psycopg2, execute query and fetch results
     :param query: Query to be executed
