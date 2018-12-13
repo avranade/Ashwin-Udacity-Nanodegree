@@ -114,14 +114,13 @@ function initializeMap() {
         ],
 
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: true,
-        mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-        }
+        mapTypeControl: false
     };
-    map = new google.maps.Map(document.getElementById('map'), mapOptions)
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
     bounds = new google.maps.LatLngBounds();
-    infoWindow = new google.maps.InfoWindow();
+    infoWindow = new google.maps.InfoWindow({
+        maxWidth: 150})
+        ;
     ko.applyBindings(new ViewModel());
 
     // Dismiss infoWindow with out of bound click
@@ -168,16 +167,16 @@ var poiMarker = function(data) {
     this.venueId = this.visible = ko.observable(true);
 
     // Build a request URL for JSON request of foursquare data
-    var request = endpointBaseUrl 
-                    + '/search?ll=' 
-                    + this.position.lat 
-                    + ',' 
-                    + this.position.lng 
-                    + '&client_id=' 
-                    + foursquareClientID + '&client_secret=' 
-                    + foursquareClientSecret 
-                    + '&v=' + foursquareApiVersion 
-                    + '&query=' + this.title;
+    var request = endpointBaseUrl +
+                    '/search?ll=' +
+                    this.position.lat +
+                    ',' +
+                    this.position.lng +
+                    '&client_id=' +
+                    foursquareClientID + '&client_secret=' +
+                    foursquareClientSecret +
+                    '&v=' + foursquareApiVersion +
+                    '&query=' + this.title;
 
     // Make a GET Call and parse request to get Venue ID
     // We will pass it along to the renderInfoWindow function to make another API call 
@@ -218,12 +217,6 @@ var poiMarker = function(data) {
         map.panBy(0, -200);
     });
 
-
-    // creates bounce effect when item selected
-    this.bounce = function(place) {
-        google.maps.event.trigger(self.marker, 'click');
-    };
-
     // show item info when selected from list
     this.show = function(location) {
         google.maps.event.trigger(self.marker, 'click');
@@ -233,9 +226,15 @@ var poiMarker = function(data) {
 
 /* View Model setup*/
 var ViewModel = function() {
+
     var self = this;
     this.mapList = ko.observableArray([]);
     
+    // Refer stack overflow : https://stackoverflow.com/questions/39799600/how-to-use-knockoutjs-click-binding-to-create-a-hamburger-menu
+    this.hamburgerVisible = ko.observable(false);
+    this.showHamburgerMenu = function () {
+        this.hamburgerVisible(!this.hamburgerVisible());
+    };
 
     // add location markers for each location into the array
     locations.forEach(function(location) {
@@ -269,53 +268,56 @@ var ViewModel = function() {
 // 2. Details : Based on the foursquare ID, get the details (image, URL) of a venue
 // 2nd API call is made only on clicking marker
 function renderInfoWindow(marker, venueId, infowindow) {
+
     // Check to make sure the infowindow is not yet open.
     if (infowindow.marker != marker) {
         // Clear infoWindow before setting new value, since it is a Global var
         infowindow.setContent('');
         infowindow.marker = marker;
 
-        // clear marker if the infowindow is closed and reset map
+        // clear marker if the infowindow is closed.
         infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
             map.fitBounds(bounds);
         });
 
         // Construct the venueRequest to get details on the venue
-        var venueRequest = endpointBaseUrl 
-                            + venueId 
-                            + "?" 
-                            + '&client_id=' + foursquareClientID 
-                            + '&client_secret=' + foursquareClientSecret 
-                            + '&v=' + foursquareApiVersion;
+        var venueRequest = endpointBaseUrl +
+                            venueId +
+                            "?" +
+                            '&client_id=' + foursquareClientID +
+                            '&client_secret=' + foursquareClientSecret +
+                            '&v=' + foursquareApiVersion;
 
         // Get call to get JSON response with venue details
         $.getJSON(venueRequest).done(function(data) {
             var venueResults = data.response;
 
-            var imageUrl = venueResults.venue.bestPhoto["prefix"] + "height150" +
-                venueResults.venue.bestPhoto["suffix"];
-            var shortUrl = venueResults.venue["shortUrl"] ? venueResults.venue["shortUrl"] : "(Not Found)";
+            var imageUrl = venueResults.venue.bestPhoto.prefix + "height150" +
+                venueResults.venue.bestPhoto.suffix;
+            var shortUrl = venueResults.venue.shortUrl ? venueResults.venue.shortUrl : "(Not Found)";
             var name = venueResults.venue.name ? venueResults.venue.name : "(Not Found)";
             var street = venueResults.venue.location.formattedAddress[0] ? venueResults.venue.location.formattedAddress[0] : "(Not Found)";
             var city = venueResults.venue.location.formattedAddress[1] ? venueResults.venue.location.formattedAddress[1] : "(Not Found)";
             var phone = venueResults.venue.contact.formattedPhone ? venueResults.venue.contact.formattedPhone : "(Not Found)";
 
-            infoWindowContent = "<img src='Powered-by-Foursquare-black-600.png' style='width:150px;height:25px;''>"
-                                + "<div style='width:200px;min-height:120px'>" 
-                                + "<img src=" + "'" + imageUrl + "'>" 
-                                + "</div>" 
-                                + "<h4>" + name + "</h4>"
-                                + "<p>"
-                                + street
-                                + "<br>"
-                                + city
-                                + "<br>"
-                                + "<span> Ph: " + phone + "</span>"
-                                + "<br>"
-                                + "<div>" 
-                                + "<a href='" + shortUrl + "'>Check it out on Foursquare</a>" 
-                                + "<br><br>" ;
+            infoWindowContent = "<div class='scrollFix' id='info-window-content'>" +
+                                "<img src='Powered-by-Foursquare-black-600.png' style='width:150px;height:25px;''>" +
+                                "<div style='width:200px;min-height:120px'>" +
+                                "<img src=" + "'" + imageUrl + "'>" +
+                                "</div>" +
+                                "<h4>" + name + "</h4>" +
+                                "<p>" +
+                                street +
+                                "<br>" +
+                                city +
+                                "<br>" +
+                                "<span> Ph: " + phone + "</span>" +
+                                "<br>" +
+                                "<div>" +
+                                "<a href='" + shortUrl + "'>Check it out on Foursquare</a>" +
+                                "<br><br>" +
+                                "</div>" ;
 
             // console.log('infoWindowContent' + infoWindowContent);
             infowindow.setContent(infoWindowContent);

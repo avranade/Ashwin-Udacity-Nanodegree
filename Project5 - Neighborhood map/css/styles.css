@@ -1,40 +1,168 @@
+/* Custom CSS and Overrides */
 body {
-    font-family: "Lato", sans-serif;
+    background-color: #455A64;
+    color: black;
+}
+
+h3 {
+    color: #FFFFFF;
+}
+
+body,
+html,
+#map,
+.main-container,
+.container-fluid,
+.container-fluid .row,
+main {
+    min-height: 100%;
+    height: 100%;
+}
+
+a, a:visited{
+    color: #03A9F4;
+}
+
+a:hover {
+    color: #03A9F4;
 }
 
 .navbar {
-    
-    border-radius: 0px;
+    border-radius: 0;
     margin-bottom: 0;
+    background-color : #607D8B;
 }
 
-.nav-title {
-    font-family: "Lato", sans-serif;
+.navbar-default {
+    border-color : #607D8B;
+}
+
+.main-container {
+    background-color: #eee;
+    transition: 0.2s; /* Quick transition to open side nav */
+}
+
+.fa {
     font-size: 25px;
-    color: white;
+}
+.hamburger-menu {
+
+    padding: 20px 10px 10px 0px;
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    z-index: 2; /* since z-index of map is 1*/
+    overflow-x: hidden; /* to disable horizontal scroll */
+    transition: 0.2s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+#sidebar-header {
+    font-size: 20px;
+    text-align:center;
+    color: #FFFFFF;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-left : 3px;
+    margin-right : 3px;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+/* Media Queries */
+/* for tablet and phone */
+
+@media screen and (min-width: 991px) {
+    .sidebar {
+        width: 25%;
+    }
+
+    .main-container {
+        width: 75%;
+    }
+
+    nav {
+        display: none;
+    }
+
+}
+
+
+@media screen and (max-width: 991px) {
+    nav {
+        display: block;
+    }
+
+    .sidebar {
+        padding: 0;
+        width: 0;
+    }
+}
+
+.sidebar_shown {
+    width: 50%;
+}
+
+aside form-control {
+    
+    border-color : #FFFFFF;
+    
+}
+aside {
+    color : #CFD8DC;
+}
+aside form {
+    margin: 10px 10px 0 5px;
+    background-color : #CFD8DC;
+}
+
+aside li {
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    border-bottom: 1px solid #BDBDBD);
+}
+
+aside li a,
+aside li a:visited {
+    color: #757575;
+}
+
+aside li a:hover {
+    color: #BDBDBD;
+    text-decoration: none;
+}
+
+aside li a:active {
+    color: #dddfde;
 }
 
 #map {
-    margin: 0;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
-    z-index: -4;
+    height: 100%;
+    z-index: 1;
 }
 
-.sidenav {
-    margin: 0;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
-    width: 250px;
+#info-window-content{
+    font-family: "Lato", sans-serif;
+
 }
 
-
-.red {
-    color: red;
+/* */
+.scrollFix {
+    line-height: 1.35;
+    
+    overflow-x: hidden;
+    white-space: wrap;
+    align-content: center;
 }
+

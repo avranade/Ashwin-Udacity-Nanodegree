@@ -43,10 +43,21 @@ This single page application was created to show a map of locations where Blue B
 * [Bottle Icon Flat - Iconshop Free icons for Commercial use](https://freeiconshop.com/icon/bottle-icon-flat/)
 * [Material Design palette](https://www.materialpalette.com/blue-grey/light-blue)
 * [Powered by Foursquare logo - Foursquare developer site resources](https://foursquare.com/about/logos)
-* Javascript Beautifier : https://beautifier.io/
-* [Postman](https://www.getpostman.com/)
+* [Css tricks](https://css-tricks.com/almanac/properties/o/overflow/)
+* [How to use knockoutjs click binding to create a hamburger menu](https://stackoverflow.com/questions/39799600/how-to-use-knockoutjs-click-binding-to-create-a-hamburger-menu)
+* [FontAwesome - For hamburger nav](https://fontawesome.com/icons/bars?style=solid)
+
+## Other student submissions referred
+Only for UI : https://github.com/melzareix/Full-Stack-Nanodegree/tree/master/6-NeighbourhoodMap
+Solution seemed elegant, but needed some more work. My UI borrows some parts from this, but also adds more css changes to make it more material design-ish and also needed more UI customizations. Used w3schools, bootstrap and material design palette to enhance this design. 
+
+## Revisions
+* Removed unnecessary code
+* Recreated UI based on a combination of Udacity learning material, Bootstrap, w3schools, Material design palette and other online resources. Added responsive design
+* Set max width of InfoWindow and also fixed overflow
+* Removed redundant valueUpdate
 
 ## Further improvements 
 * While the page is currently standalone, it is based on canned data. A further improvement will be getting locations from API calls
-* Accessibility text hasn't been added specifically. In terms of Accessibility, this might fail 
+* CRUD operations on markers. A future application is to make this a CRUD application which can be used for making and sharing a list to others.
 
