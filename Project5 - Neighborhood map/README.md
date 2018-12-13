@@ -50,7 +50,7 @@ This single page application was created to show a map of locations where Blue B
 
 ## Other student submissions referred
 Only for UI : https://github.com/melzareix/Full-Stack-Nanodegree/tree/master/6-NeighbourhoodMap
-Solution seemed elegant, but needed some more work. My UI borrows some parts from this, but also adds more css changes to make it more material design-ish and also needed more UI customizations. Used w3schools, bootstrap and material design palette along with this to make my new UI. 
+Solution seemed elegant, but needed some more work. My UI borrows some parts from this, but also adds more changes to make it more material design-ish and also needed more UI customizations. Used w3schools, bootstrap and material design palette along with this to make my new UI. 
 
 ## Revisions
 * Removed unnecessary code
