@@ -218,6 +218,7 @@ var poiMarker = function(data) {
     });
 
     // show item info when selected from list
+    // This is bound to the venueList in index.html. Clicking on the list item will pass on a click to the corresponding marker on the map
     this.show = function(location) {
         google.maps.event.trigger(self.marker, 'click');
     };

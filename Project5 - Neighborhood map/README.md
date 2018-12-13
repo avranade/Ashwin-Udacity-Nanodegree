@@ -49,7 +49,7 @@ This single page application was created to show a map of locations where Blue B
 
 ## Other student submissions referred
 Only for UI : https://github.com/melzareix/Full-Stack-Nanodegree/tree/master/6-NeighbourhoodMap
-Solution seemed elegant, but needed some more work. My UI borrows some parts from this, but also adds more css changes to make it more material design-ish and also needed more UI customizations. Used w3schools, bootstrap and material design palette to enhance this design. 
+Solution seemed elegant, but needed some more work. My UI borrows some parts from this, but also adds more css changes to make it more material design-ish and also needed more UI customizations. Used w3schools, bootstrap and material design palette along with this to make my new UI. 
 
 ## Revisions
 * Removed unnecessary code
@@ -60,4 +60,5 @@ Solution seemed elegant, but needed some more work. My UI borrows some parts fro
 ## Further improvements 
 * While the page is currently standalone, it is based on canned data. A further improvement will be getting locations from API calls
 * CRUD operations on markers. A future application is to make this a CRUD application which can be used for making and sharing a list to others.
+* Abstract map setup out of application.js. This is to make it easier to switch map providers and also to make it easier for other JS files to use it. To be researched. 
 
