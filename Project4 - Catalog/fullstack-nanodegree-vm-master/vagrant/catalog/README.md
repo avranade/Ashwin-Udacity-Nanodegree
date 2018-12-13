@@ -31,7 +31,7 @@ Frontend: HTML, CSS, JS. Fontawesome was used for the Home Icon on Page.
 ```
 4. Setup and initially populate the database
 ```
-    # in the root directory for project:
+    # Navigate to the catalog folder inside the Vagrant folder
     python database_create.py
     python lotsofproducts.py
 ```
