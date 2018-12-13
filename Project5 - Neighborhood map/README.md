@@ -22,6 +22,7 @@ This single page application was created to show a map of locations where Blue B
 ## How to View This App
 * Clone the repo or download project as zip file
 * Once you have the code, navigate to and open index.html
+* Currently the repo is hosted under a common repo which has all Nanodegree projects. In the future, they will be separated, so that projects can be hosted on github.io pages
 
 ## Notes on editing this app/ Troubleshooting
 * In some instances, the error message 'Oops... Foursquare is not responding....' might appear. This could be because the API has hit it's limit. 
