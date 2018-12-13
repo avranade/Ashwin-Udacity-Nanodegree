@@ -15,4 +15,4 @@ var foursquareClientID = 'LDAGABFRMUSRMYJNN1JNK0JHA0CZM0K3WKVGGGAPISAFD0LG',
 * Icon image is set here, so that multiple JS files can use it consistently. 
 * Also, it makes it easy to swap. Try swapping to 'bottle_with_background.png'
 */
-var iconImage = 'bottle.png' //https://developers.google.com/maps/documentation/javascript/markers
+var iconImage = 'bottle.png'; //https://developers.google.com/maps/documentation/javascript/markers
