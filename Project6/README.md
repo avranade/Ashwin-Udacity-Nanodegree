@@ -70,8 +70,8 @@ chmod 644 /home/grader/.ssh/authorized_keys
 ```
 3. Restart SSH: `$ sudo service ssh restart`
 4. Now you are able to login in as grader: `$ ssh -i ~/.ssh/grader_key -p 2200 grader@<your_machine_id>`
-5. You will be asked for grader's password. To unable it, open configuration file again: `$ sudo nano /etc/ssh/sshd_config`
-6. Change `PasswordAuthentication yes` to **no**
+5. If you are asked for grader password, you can disable it. Open configuration file again: `$ sudo nano /etc/ssh/sshd_config`
+6. Change `PasswordAuthentication yes` to `no`
 7. Restart SSH: `$ sudo service ssh restart`
 
 ## Disable root login
@@ -84,7 +84,7 @@ From `PermitRootLogin without-password` to `PermitRootLogin no`.
 
 ## Install and configure Apache
 1. Install **Apache**: `$ sudo apt-get install apache2`
-2. Go to http://<your_machine_ip>/, if Apache is working correctly, an **Apache2 Ubuntu Default Page** shows up
+2. Go to `http://<your_machine_ip>/`, if Apache is working correctly, an **Apache2 Ubuntu Default Page** shows up
 
 
 ## Install and configure Python mod_wsgi
@@ -125,8 +125,12 @@ Create an empty database called `catalog` with:
 
 
 ## Edit client_secrets.json file
-1. Create a new project on Google API Console and download `client_secrets.json` file
-2. Copy and paste contents of downloaded `client_secrets.json` to the file with same name under directory `/var/www/catalog/catalog/client_secrets.json`
+1. Create a new project on Google API Console 
+2. In the app, since I am using .xip.io as the DNS mapper, add `54.200.133.56.xip.io` to authorized domains
+3. Add `http://54.200.133.56.xip.io/login` and `http://54.200.133.56.xip.io/gconnect` to Authorized redirect URIs
+4. Add `http://54.200.133.56.xip.io` to Authorized JavaScript origins 
+5. Save and download `client_secrets.json` file
+6. Copy and paste contents of downloaded `client_secrets.json` to the file with same name under directory `/var/www/catalog/catalog/client_secrets.json`
 
 ## Setup for deploying a Flask App on Ubuntu VPS
 1. Install pip: `$ sudo apt-get install python-pip`
@@ -188,11 +192,12 @@ $ sudo pip install psycopg2
 ## Config updates to DB setup
 In `__init,py__`, `database_create.py` and `lotsofproducts.py`, replace line for `engine` with ``engine = create_engine('postgresql://catalog:INSERT_PASSWORD_FOR_DATABASE_HERE@localhost/catalog')``
 
+
 ## Config updates to Client secrets 
 in `__init.py__`, update the path of `client_secrets.json` to `var/www/catalog/catalog/client_secrets.json`, since the app is running in default `/` working directory 
 
 
-## Disable defualt Apache page
+## Disable default Apache page
 1. `$ sudo a2dissite 000-default.conf`
 2. Restart **Apache**: `$ sudo service apache2 reload`
 
